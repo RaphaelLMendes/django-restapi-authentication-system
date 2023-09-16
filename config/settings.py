@@ -46,8 +46,20 @@ INSTALLED_APPS = [
     
     # Token authentication
     'knox',
-    'core.token_auth'
+    'core.token_auth',
+
+    'dj_rest_auth',
+    'rest_framework.authtoken',
+
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'dj_rest_auth.registration',
 ]
+
+# dj-rest-auth 5.0.0 setting
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -57,6 +69,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # "allauth.account.middleware.AccountMiddleware",
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -149,5 +162,8 @@ SWAGGER_SETTINGS = {
 }
 
 REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': ('knox.auth.TokenAuthentication',),
+    'DEFAULT_AUTHENTICATION_CLASSES': ('knox.auth.TokenAuthentication','rest_framework.authentication.TokenAuthentication',),
+    # 'DEFAULT_AUTHENTICATION_CLASSES': ('rest_framework.authentication.TokenAuthentication',),
 }
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

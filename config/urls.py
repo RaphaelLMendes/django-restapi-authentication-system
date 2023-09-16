@@ -36,5 +36,7 @@ schema_view = get_schema_view(
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
-    path(r'api/auth/', include('core.token_auth.api.urls'))
+    # path('dj-rest-auth/', include('dj_rest_auth.urls')),
+    # path('dj-rest-auth/registration/', include('dj_rest_auth.registration.urls')),
+    path(r'api/auth/', include('core.token_auth.api.urls')),
 ]
